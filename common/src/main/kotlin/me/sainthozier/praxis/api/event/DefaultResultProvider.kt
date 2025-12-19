@@ -13,24 +13,20 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis
+package me.sainthozier.praxis.api.event
 
-import me.sainthozier.praxis.impl.event.NeoForgeEventHandler
-import me.sainthozier.praxis.impl.network.NeoForgePacketRegistrar
-import me.sainthozier.praxis.impl.services.Services
-import net.neoforged.bus.api.IEventBus
-import net.neoforged.fml.ModContainer
-import net.neoforged.fml.common.Mod
-import net.neoforged.neoforge.common.NeoForge
-
-@Mod(ModInfo.MOD_ID)
-class NeoForgeModEntrypoint(eventBus: IEventBus, modContainer: ModContainer) {
-    init {
-        (Services.PACKET_REGISTRAR as? NeoForgePacketRegistrar)?.let { handler ->
-            eventBus.addListener(handler::onRegisterPayloadHandlers)
-        }
-
-        NeoForge.EVENT_BUS.register(NeoForgeEventHandler)
-        CommonModEntrypoint.init()
-    }
+/**
+ * A functional interface for providing a default result for an event when no listeners handle it.
+ * This is designed for clean interoperability between Kotlin and Java.
+ *
+ * @param T The type of the result to provide.
+ */
+fun interface DefaultResultProvider<T> {
+    /**
+     * Gets the default result.
+     * @param args The arguments passed to the event invoker, which may be null if there are none.
+     * Java users should be prepared to check if this is an `Object[]` and cast it.
+     * @return The default result instance.
+     */
+    fun get(args: Array<out Any>?): T
 }

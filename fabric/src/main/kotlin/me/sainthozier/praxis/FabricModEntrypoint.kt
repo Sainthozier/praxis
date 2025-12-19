@@ -16,8 +16,9 @@
 package me.sainthozier.praxis
 
 import me.sainthozier.praxis.CommonModEntrypoint
+import me.sainthozier.praxis.impl.event.FabricEventHandler
 
 fun init() {
-    ModInfo.LOG.info("Hello Fabric world from Kotlin!")
+    FabricEventHandler.bootstrap()
     CommonModEntrypoint.init()
 }

@@ -13,24 +13,25 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis
+package me.sainthozier.praxis.api.event.server
 
-import me.sainthozier.praxis.impl.event.NeoForgeEventHandler
-import me.sainthozier.praxis.impl.network.NeoForgePacketRegistrar
-import me.sainthozier.praxis.impl.services.Services
-import net.neoforged.bus.api.IEventBus
-import net.neoforged.fml.ModContainer
-import net.neoforged.fml.common.Mod
-import net.neoforged.neoforge.common.NeoForge
+import com.mojang.brigadier.CommandDispatcher
+import me.sainthozier.praxis.api.event.Event
+import me.sainthozier.praxis.api.event.EventFactory
+import net.minecraft.commands.CommandBuildContext
+import net.minecraft.commands.CommandSourceStack
+import net.minecraft.commands.Commands
 
-@Mod(ModInfo.MOD_ID)
-class NeoForgeModEntrypoint(eventBus: IEventBus, modContainer: ModContainer) {
-    init {
-        (Services.PACKET_REGISTRAR as? NeoForgePacketRegistrar)?.let { handler ->
-            eventBus.addListener(handler::onRegisterPayloadHandlers)
-        }
+object CommandRegistrationCallback {
 
-        NeoForge.EVENT_BUS.register(NeoForgeEventHandler)
-        CommonModEntrypoint.init()
+    @JvmField
+    val EVENT: Event<Registrar> = EventFactory.broadcast()
+
+    fun interface Registrar {
+        fun onCommandRegistration(
+            dispatcher: CommandDispatcher<CommandSourceStack>,
+            registryAccess: CommandBuildContext,
+            environment: Commands.CommandSelection
+        )
     }
 }

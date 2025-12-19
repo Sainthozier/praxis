@@ -13,24 +13,29 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis
+package me.sainthozier.praxis.api.event
 
-import me.sainthozier.praxis.impl.event.NeoForgeEventHandler
-import me.sainthozier.praxis.impl.network.NeoForgePacketRegistrar
-import me.sainthozier.praxis.impl.services.Services
-import net.neoforged.bus.api.IEventBus
-import net.neoforged.fml.ModContainer
-import net.neoforged.fml.common.Mod
-import net.neoforged.neoforge.common.NeoForge
+/**
+ * Represents a collection of listeners (callbacks) that can be invoked.
+ * @param L The type of the listener. Must be a functional interface.
+ */
+interface Event<L : Any> {
+    /**
+     * The invoker instance. Calling a method on this object will fire the event
+     * and call all registered listeners.
+     */
+    val invoker: L
 
-@Mod(ModInfo.MOD_ID)
-class NeoForgeModEntrypoint(eventBus: IEventBus, modContainer: ModContainer) {
-    init {
-        (Services.PACKET_REGISTRAR as? NeoForgePacketRegistrar)?.let { handler ->
-            eventBus.addListener(handler::onRegisterPayloadHandlers)
-        }
+    /**
+     * Registers a listener for this event with DEFAULT phase.
+     * @param listener The listener instance to register.
+     */
+    fun register(listener: L)
 
-        NeoForge.EVENT_BUS.register(NeoForgeEventHandler)
-        CommonModEntrypoint.init()
-    }
+    /**
+     * Registers a listener for this event at a specific phase.
+     * @param phase The phase at which to register the listener.
+     * @param listener The listener instance to register.
+     */
+    fun register(phase: EventPhase, listener: L)
 }

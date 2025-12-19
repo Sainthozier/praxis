@@ -13,24 +13,16 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis
+package me.sainthozier.praxis.api.event
 
-import me.sainthozier.praxis.impl.event.NeoForgeEventHandler
-import me.sainthozier.praxis.impl.network.NeoForgePacketRegistrar
-import me.sainthozier.praxis.impl.services.Services
-import net.neoforged.bus.api.IEventBus
-import net.neoforged.fml.ModContainer
-import net.neoforged.fml.common.Mod
-import net.neoforged.neoforge.common.NeoForge
-
-@Mod(ModInfo.MOD_ID)
-class NeoForgeModEntrypoint(eventBus: IEventBus, modContainer: ModContainer) {
-    init {
-        (Services.PACKET_REGISTRAR as? NeoForgePacketRegistrar)?.let { handler ->
-            eventBus.addListener(handler::onRegisterPayloadHandlers)
-        }
-
-        NeoForge.EVENT_BUS.register(NeoForgeEventHandler)
-        CommonModEntrypoint.init()
-    }
+/**
+ * Defines the execution order for event listeners.
+ * Listeners are executed in order from EARLIEST to LATEST.
+ */
+enum class EventPhase {
+    EARLIEST,
+    EARLY,
+    DEFAULT,
+    LATE,
+    LATEST
 }

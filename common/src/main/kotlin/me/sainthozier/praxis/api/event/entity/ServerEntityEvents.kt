@@ -13,24 +13,26 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis
+package me.sainthozier.praxis.api.event.entity
 
-import me.sainthozier.praxis.impl.event.NeoForgeEventHandler
-import me.sainthozier.praxis.impl.network.NeoForgePacketRegistrar
-import me.sainthozier.praxis.impl.services.Services
-import net.neoforged.bus.api.IEventBus
-import net.neoforged.fml.ModContainer
-import net.neoforged.fml.common.Mod
-import net.neoforged.neoforge.common.NeoForge
+import me.sainthozier.praxis.api.event.Event
+import me.sainthozier.praxis.api.event.EventFactory
+import net.minecraft.server.level.ServerLevel
+import net.minecraft.world.entity.Entity
 
-@Mod(ModInfo.MOD_ID)
-class NeoForgeModEntrypoint(eventBus: IEventBus, modContainer: ModContainer) {
-    init {
-        (Services.PACKET_REGISTRAR as? NeoForgePacketRegistrar)?.let { handler ->
-            eventBus.addListener(handler::onRegisterPayloadHandlers)
-        }
+object ServerEntityEvents {
 
-        NeoForge.EVENT_BUS.register(NeoForgeEventHandler)
-        CommonModEntrypoint.init()
+    @JvmField
+    val LOAD: Event<Load> = EventFactory.broadcast()
+
+    @JvmField
+    val UNLOAD: Event<Unload> = EventFactory.broadcast()
+
+    fun interface Load {
+        fun onEntityLoad(entity: Entity, world: ServerLevel, loadedFromDisk: Boolean)
+    }
+
+    fun interface Unload {
+        fun onEntityUnload(entity: Entity, world: ServerLevel)
     }
 }
