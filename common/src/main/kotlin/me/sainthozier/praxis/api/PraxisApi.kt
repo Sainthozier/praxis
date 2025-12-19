@@ -20,11 +20,13 @@ import me.sainthozier.praxis.api.data.AttachmentManager
 import me.sainthozier.praxis.api.network.PacketDistributor
 import me.sainthozier.praxis.api.network.PacketRegistrar
 import me.sainthozier.praxis.api.registry.RegistrarFactoryProvider
+import me.sainthozier.praxis.api.util.CreativeModeTabBuilderProvider
 import me.sainthozier.praxis.api.util.PlatformHelper
 import me.sainthozier.praxis.impl.services.Services
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+// TODO: single api entrypoint is questionable good, but you can do better than this
 object PraxisApi {
     @JvmStatic
     internal val LOG: Logger = LoggerFactory.getLogger(ModInfo.MOD_NAME)
@@ -43,4 +45,7 @@ object PraxisApi {
 
     @JvmStatic
     val attachmentManager: AttachmentManager = Services.ATTACHMENT_MANAGER
+
+    @JvmStatic
+    val creativeModeTabBuilderProvider: CreativeModeTabBuilderProvider = Services.CREATIVE_MODE_TAB_BUILDER_PROVIDER
 }

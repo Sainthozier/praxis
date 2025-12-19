@@ -13,21 +13,14 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis.impl.services
+package me.sainthozier.praxis.impl.util
 
-import me.sainthozier.praxis.api.data.AttachmentManager
-import me.sainthozier.praxis.api.network.PacketDistributor
-import me.sainthozier.praxis.api.network.PacketRegistrar
-import me.sainthozier.praxis.api.registry.RegistrarFactoryProvider
+import com.google.auto.service.AutoService
 import me.sainthozier.praxis.api.util.CreativeModeTabBuilderProvider
-import me.sainthozier.praxis.api.util.PlatformHelper
-import me.sainthozier.praxis.api.util.PraxisServiceLoader
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
+import net.minecraft.world.item.CreativeModeTab
 
-object Services {
-    val PLATFORM: PlatformHelper = PraxisServiceLoader.load()
-    val PACKET_REGISTRAR: PacketRegistrar = PraxisServiceLoader.load()
-    val PACKET_DISTRIBUTOR: PacketDistributor = PraxisServiceLoader.load()
-    val REGISTRATION: RegistrarFactoryProvider = PraxisServiceLoader.load()
-    val ATTACHMENT_MANAGER: AttachmentManager = PraxisServiceLoader.load()
-    val CREATIVE_MODE_TAB_BUILDER_PROVIDER: CreativeModeTabBuilderProvider = PraxisServiceLoader.load()
+@AutoService(CreativeModeTabBuilderProvider::class)
+class FabricCreativeModeTabBuilderProvider : CreativeModeTabBuilderProvider {
+    override fun get(): CreativeModeTab.Builder = FabricItemGroup.builder()
 }
