@@ -44,4 +44,7 @@ sourceSets.main.get().resources { srcDir("src/generated/resources") }
 
 dependencies {
     implementation(libs.klf)
+    // Google AutoService annotations, for generating ServiceLoader metadata automatically
+    ksp(libs.autoservice.ksp)
+    compileOnly(libs.autoservice.google)
 }

@@ -13,11 +13,28 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis
+package me.sainthozier.praxis.impl.util
 
-import me.sainthozier.praxis.CommonModEntrypoint
+import com.google.auto.service.AutoService
+import me.sainthozier.praxis.api.util.PlatformHelper
+import net.fabricmc.loader.api.FabricLoader
+import java.nio.file.Path
 
-fun init() {
-    ModInfo.LOG.info("Hello Fabric world from Kotlin!")
-    CommonModEntrypoint.init()
+@AutoService(PlatformHelper::class)
+class FabricPlatformHelper : PlatformHelper {
+    override fun getPlatformName(): String {
+        return "Fabric"
+    }
+
+    override fun isModLoaded(modId: String?): Boolean {
+        return FabricLoader.getInstance().isModLoaded(modId)
+    }
+
+    override fun isDevelopmentEnvironment(): Boolean {
+        return FabricLoader.getInstance().isDevelopmentEnvironment
+    }
+
+    override fun getConfigDir(): Path {
+        return FabricLoader.getInstance().configDir
+    }
 }

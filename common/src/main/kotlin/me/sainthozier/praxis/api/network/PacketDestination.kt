@@ -13,11 +13,10 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis
+package me.sainthozier.praxis.api.network
 
-import me.sainthozier.praxis.CommonModEntrypoint
-
-fun init() {
-    ModInfo.LOG.info("Hello Fabric world from Kotlin!")
-    CommonModEntrypoint.init()
+enum class PacketDestination(val isServerbound: Boolean, val isClientbound: Boolean, val isBidirectional: Boolean) {
+    SERVER_TO_CLIENT(false, true, false),
+    CLIENT_TO_SERVER(true, false, false),
+    BIDIRECTIONAL(true, true, true);
 }

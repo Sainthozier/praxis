@@ -15,7 +15,7 @@
 
 package me.sainthozier.praxis
 
-import me.sainthozier.praxis.platform.Services
+import me.sainthozier.praxis.api.PraxisApi
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.item.Items
 
@@ -30,8 +30,8 @@ object CommonModEntrypoint {
     fun init() {
         ModInfo.LOG.info(
             "Hello from Common init on {}! we are currently in a {} environment!",
-            Services.PLATFORM.getPlatformName(),
-            Services.PLATFORM.getEnvironmentName()
+            PraxisApi.platformHelper.getPlatformName(),
+            PraxisApi.platformHelper.getEnvironmentName()
         )
         ModInfo.LOG.info("The ID for diamonds is {}", BuiltInRegistries.ITEM.getKey(Items.DIAMOND))
 
@@ -40,7 +40,7 @@ object CommonModEntrypoint {
         // your own abstraction layer. You can learn more about this in our provided services class. In this example
         // we have an interface in the common code and use a loader specific implementation to delegate our call to
         // the platform specific approach.
-        if (Services.PLATFORM.isModLoaded("examplemod")) {
+        if (PraxisApi.platformHelper.isModLoaded("examplemod")) {
             ModInfo.LOG.info("Hello to examplemod")
         }
     }

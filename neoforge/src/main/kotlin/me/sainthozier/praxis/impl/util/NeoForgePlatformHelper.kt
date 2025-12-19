@@ -13,22 +13,30 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis.platform
+package me.sainthozier.praxis.impl.util
 
-import me.sainthozier.praxis.ModInfo
-import me.sainthozier.praxis.platform.services.PlatformHelper
-import java.util.ServiceLoader
+import com.google.auto.service.AutoService
+import me.sainthozier.praxis.api.util.PlatformHelper
+import net.neoforged.fml.ModList
+import net.neoforged.fml.loading.FMLLoader
+import net.neoforged.fml.loading.FMLPaths
+import java.nio.file.Path
 
-object Services {
-    val PLATFORM = load(PlatformHelper::class.java)
+@AutoService(PlatformHelper::class)
+class NeoForgePlatformHelper : PlatformHelper {
+    override fun getPlatformName(): String {
+        return "NeoForge"
+    }
 
-    fun <T> load(clazz: Class<T>): T {
-        val loadedService = ServiceLoader.load(clazz)
-            .findFirst()
-            .orElseThrow {
-                IllegalStateException("Failed to load service for ${clazz.name}")
-            }
-        ModInfo.LOG.debug("Loaded {} for service {}", loadedService, clazz)
-        return loadedService
+    override fun isModLoaded(modId: String?): Boolean {
+        return ModList.get().isLoaded(modId)
+    }
+
+    override fun isDevelopmentEnvironment(): Boolean {
+        return !FMLLoader.isProduction()
+    }
+
+    override fun getConfigDir(): Path {
+        return FMLPaths.CONFIGDIR.get()
     }
 }

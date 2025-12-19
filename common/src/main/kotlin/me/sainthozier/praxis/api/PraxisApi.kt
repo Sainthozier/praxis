@@ -13,11 +13,26 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis
+package me.sainthozier.praxis.api
 
-import me.sainthozier.praxis.CommonModEntrypoint
+import me.sainthozier.praxis.ModInfo
+import me.sainthozier.praxis.api.network.PacketDistributor
+import me.sainthozier.praxis.api.network.PacketRegistrar
+import me.sainthozier.praxis.api.util.PlatformHelper
+import me.sainthozier.praxis.impl.services.Services
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
-fun init() {
-    ModInfo.LOG.info("Hello Fabric world from Kotlin!")
-    CommonModEntrypoint.init()
+object PraxisApi {
+    @JvmStatic
+    internal val LOG: Logger = LoggerFactory.getLogger(ModInfo.MOD_NAME)
+
+    @JvmStatic
+    val platformHelper: PlatformHelper = Services.PLATFORM
+
+    @JvmStatic
+    val packetRegistrar: PacketRegistrar = Services.PACKET_REGISTRAR
+
+    @JvmStatic
+    val packetDistributor: PacketDistributor = Services.PACKET_DISTRIBUTOR
 }

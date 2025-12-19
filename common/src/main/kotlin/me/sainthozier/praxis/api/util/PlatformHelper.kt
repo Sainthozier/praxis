@@ -13,7 +13,7 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis.platform.services
+package me.sainthozier.praxis.api.util
 
 import java.nio.file.Path
 

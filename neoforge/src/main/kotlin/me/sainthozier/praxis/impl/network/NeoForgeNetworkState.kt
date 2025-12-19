@@ -13,11 +13,11 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis
+package me.sainthozier.praxis.impl.network
 
-import me.sainthozier.praxis.CommonModEntrypoint
+import net.minecraft.resources.ResourceLocation
 
-fun init() {
-    ModInfo.LOG.info("Hello Fabric world from Kotlin!")
-    CommonModEntrypoint.init()
+internal object NeoForgeNetworkState {
+    val registeredServerboundPackets = mutableSetOf<ResourceLocation>()
+    val registeredClientboundPackets = mutableSetOf<ResourceLocation>()
 }

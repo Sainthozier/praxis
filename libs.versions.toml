@@ -5,6 +5,9 @@ moddev = "2.0.126"
 loom = "1.14-SNAPSHOT"
 dokka = "2.1.0"
 licenser = "0.7.5"
+ksp = "2.3.4"
+autoservice-google = "1.1.1"
+autoservice-ksp = "1.2.0"
 
 minecraft = "1.21.1"
 minecraftRange = "[1.21.1, 1.21.2)"
@@ -36,6 +39,8 @@ flk = { group = "net.fabricmc", name = "fabric-language-kotlin", version.ref = "
 klf = { group = "dev.nyon", name = "KotlinLangForge", version.ref = "klf" }
 mixin = { group = "org.spongepowered", name = "mixin", version.ref = "mixin" }
 mixinExtras-common = { group = "io.github.llamalad7", name = "mixinextras-common", version.ref = "mixinExtras" }
+autoservice-google = { module = "com.google.auto.service:auto-service", version.ref="autoservice-google" }
+autoservice-ksp = { module = "dev.zacsweers.autoservice:auto-service-ksp", version.ref="autoservice-ksp" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -43,3 +48,4 @@ dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 moddev = { id = "net.neoforged.moddev", version.ref = "moddev" }
 loom = { id = "fabric-loom", version.ref = "loom" }
 licenser = { id = "net.neoforged.licenser", version.ref = "licenser" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

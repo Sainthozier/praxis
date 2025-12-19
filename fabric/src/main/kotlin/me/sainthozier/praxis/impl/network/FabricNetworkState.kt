@@ -13,28 +13,11 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis.platform
+package me.sainthozier.praxis.impl.network
 
-import me.sainthozier.praxis.platform.services.PlatformHelper
-import net.neoforged.fml.ModList
-import net.neoforged.fml.loading.FMLLoader
-import net.neoforged.fml.loading.FMLPaths
-import java.nio.file.Path
+import net.minecraft.resources.ResourceLocation
 
-class NeoForgePlatformHelper : PlatformHelper {
-    override fun getPlatformName(): String {
-        return "NeoForge"
-    }
-
-    override fun isModLoaded(modId: String?): Boolean {
-        return ModList.get().isLoaded(modId)
-    }
-
-    override fun isDevelopmentEnvironment(): Boolean {
-        return !FMLLoader.isProduction()
-    }
-
-    override fun getConfigDir(): Path {
-        return FMLPaths.CONFIGDIR.get()
-    }
+internal object FabricNetworkState {
+    val registeredServerboundPackets = mutableSetOf<ResourceLocation>()
+    val registeredClientboundPackets = mutableSetOf<ResourceLocation>()
 }

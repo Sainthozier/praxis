@@ -13,11 +13,17 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis
+package me.sainthozier.praxis.api.network
 
-import me.sainthozier.praxis.CommonModEntrypoint
+import net.minecraft.network.RegistryFriendlyByteBuf
+import net.minecraft.network.codec.StreamCodec
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload
 
-fun init() {
-    ModInfo.LOG.info("Hello Fabric world from Kotlin!")
-    CommonModEntrypoint.init()
+interface PacketRegistrar {
+    fun <T : CustomPacketPayload> registerPacket(
+        type: CustomPacketPayload.Type<T>,
+        codec: StreamCodec<in RegistryFriendlyByteBuf, T>,
+        destination: PacketDestination,
+        handler: PacketHandler<T>
+    )
 }

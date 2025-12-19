@@ -13,12 +13,13 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis
+package me.sainthozier.praxis.api.util
 
+import me.sainthozier.praxis.ModInfo
 import net.minecraft.resources.ResourceLocation
 
 /**
- * @return [ResourceLocation] from the String using the mod id specified in [ModInfo]
+ * @return [ResourceLocation] from the String using the mod id specified in [me.sainthozier.praxis.ModInfo]
  */
 fun String.location() = ResourceLocation.fromNamespaceAndPath(ModInfo.MOD_ID, this)
 

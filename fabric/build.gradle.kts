@@ -15,6 +15,9 @@ dependencies {
     modImplementation(libs.fabricApi)
 
     modImplementation(libs.flk)
+    // Google AutoService annotations, for generating ServiceLoader metadata automatically
+    ksp(libs.autoservice.ksp)
+    compileOnly(libs.autoservice.google)
 }
 
 loom {

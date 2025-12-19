@@ -15,6 +15,8 @@
 
 package me.sainthozier.praxis
 
+import me.sainthozier.praxis.impl.network.NeoForgePacketRegistrar
+import me.sainthozier.praxis.impl.services.Services
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.fml.ModContainer
 import net.neoforged.fml.common.Mod
@@ -22,7 +24,10 @@ import net.neoforged.fml.common.Mod
 @Mod(ModInfo.MOD_ID)
 class NeoForgeModEntrypoint(eventBus: IEventBus, modContainer: ModContainer) {
     init {
-        ModInfo.LOG.info("Hello NeoForge world from Kotlin!")
+        (Services.PACKET_REGISTRAR as? NeoForgePacketRegistrar)?.let { handler ->
+            eventBus.addListener(handler::onRegisterPayloadHandlers)
+        }
+
         CommonModEntrypoint.init()
     }
 }

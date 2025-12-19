@@ -6,6 +6,7 @@ plugins {
     id "org.jetbrains.kotlin.jvm"
     id "org.jetbrains.dokka"
     id "net.neoforged.licenser"
+    id "com.google.devtools.ksp"
 }
 
 version = "${project.version}+${libs.versions.minecraft.get()}"

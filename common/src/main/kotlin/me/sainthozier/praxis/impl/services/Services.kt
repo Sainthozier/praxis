@@ -13,26 +13,15 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis.platform
+package me.sainthozier.praxis.impl.services
 
-import me.sainthozier.praxis.platform.services.PlatformHelper
-import net.fabricmc.loader.api.FabricLoader
-import java.nio.file.Path
+import me.sainthozier.praxis.api.network.PacketDistributor
+import me.sainthozier.praxis.api.network.PacketRegistrar
+import me.sainthozier.praxis.api.util.PlatformHelper
+import me.sainthozier.praxis.api.util.PraxisServiceLoader
 
-class FabricPlatformHelper : PlatformHelper {
-    override fun getPlatformName(): String {
-        return "Fabric"
-    }
-
-    override fun isModLoaded(modId: String?): Boolean {
-        return FabricLoader.getInstance().isModLoaded(modId)
-    }
-
-    override fun isDevelopmentEnvironment(): Boolean {
-        return FabricLoader.getInstance().isDevelopmentEnvironment
-    }
-
-    override fun getConfigDir(): Path {
-        return FabricLoader.getInstance().configDir
-    }
+object Services {
+    val PLATFORM: PlatformHelper = PraxisServiceLoader.load()
+    val PACKET_REGISTRAR: PacketRegistrar = PraxisServiceLoader.load()
+    val PACKET_DISTRIBUTOR: PacketDistributor = PraxisServiceLoader.load()
 }
