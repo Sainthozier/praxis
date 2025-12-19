@@ -20,6 +20,12 @@
                 "adapter": "kotlin",
                 "value": "me.sainthozier.praxis.FabricModEntrypointKt::init"
             }
+        ],
+        "client": [
+            {
+                "adapter": "kotlin",
+                "value": "me.sainthozier.praxis.impl.client.FabricClientModEntrypointKt::init"
+            }
         ]
     },
     "mixins": [
