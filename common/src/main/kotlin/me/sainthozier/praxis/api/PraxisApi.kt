@@ -16,8 +16,10 @@
 package me.sainthozier.praxis.api
 
 import me.sainthozier.praxis.ModInfo
+import me.sainthozier.praxis.api.data.AttachmentManager
 import me.sainthozier.praxis.api.network.PacketDistributor
 import me.sainthozier.praxis.api.network.PacketRegistrar
+import me.sainthozier.praxis.api.registry.RegistrarFactoryProvider
 import me.sainthozier.praxis.api.util.PlatformHelper
 import me.sainthozier.praxis.impl.services.Services
 import org.slf4j.Logger
@@ -35,4 +37,10 @@ object PraxisApi {
 
     @JvmStatic
     val packetDistributor: PacketDistributor = Services.PACKET_DISTRIBUTOR
+
+    @JvmStatic
+    val registration: RegistrarFactoryProvider = Services.REGISTRATION
+
+    @JvmStatic
+    val attachmentManager: AttachmentManager = Services.ATTACHMENT_MANAGER
 }

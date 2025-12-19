@@ -15,6 +15,7 @@
 
 package me.sainthozier.praxis
 
+import me.sainthozier.praxis.impl.data.NeoForgeAttachmentManager
 import me.sainthozier.praxis.impl.event.NeoForgeEventHandler
 import me.sainthozier.praxis.impl.network.NeoForgePacketRegistrar
 import me.sainthozier.praxis.impl.services.Services
@@ -31,6 +32,8 @@ class NeoForgeModEntrypoint(eventBus: IEventBus, modContainer: ModContainer) {
         }
 
         NeoForge.EVENT_BUS.register(NeoForgeEventHandler)
+        NeoForgeAttachmentManager.ATTACHMENT_TYPES.register(eventBus)
+        NeoForgeAttachmentManager.DATA_COMPONENT_TYPES.register(eventBus)
         CommonModEntrypoint.init()
     }
 }

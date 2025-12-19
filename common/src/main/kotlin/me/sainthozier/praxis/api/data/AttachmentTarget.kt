@@ -13,19 +13,13 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis.impl.services
+package me.sainthozier.praxis.api.data
 
-import me.sainthozier.praxis.api.data.AttachmentManager
-import me.sainthozier.praxis.api.network.PacketDistributor
-import me.sainthozier.praxis.api.network.PacketRegistrar
-import me.sainthozier.praxis.api.registry.RegistrarFactoryProvider
-import me.sainthozier.praxis.api.util.PlatformHelper
-import me.sainthozier.praxis.api.util.PraxisServiceLoader
-
-object Services {
-    val PLATFORM: PlatformHelper = PraxisServiceLoader.load()
-    val PACKET_REGISTRAR: PacketRegistrar = PraxisServiceLoader.load()
-    val PACKET_DISTRIBUTOR: PacketDistributor = PraxisServiceLoader.load()
-    val REGISTRATION: RegistrarFactoryProvider = PraxisServiceLoader.load()
-    val ATTACHMENT_MANAGER: AttachmentManager = PraxisServiceLoader.load()
+/**
+ * Defines the types of game objects that data can be attached to.
+ */
+enum class AttachmentTarget {
+    ENTITY,
+    BLOCK_ENTITY,
+    ITEM_STACK
 }
