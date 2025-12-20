@@ -156,6 +156,15 @@ publishing {
     }
     repositories {
         maven {
+            name = "io.repsy"
+            url = uri("https://repo.repsy.io/mvn/sainthozier/snapshots/")
+
+            credentials {
+                username = System.getenv('maven_publish_username')
+                password = System.getenv('maven_publish_password')
+            }
+        }
+        maven {
             url System.getenv('local_maven_url')
         }
     }
