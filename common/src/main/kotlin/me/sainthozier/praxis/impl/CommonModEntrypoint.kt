@@ -1,7 +1,7 @@
 /*
  * This file is licensed under the All Rights Reserved license, part of Praxis.
  *
- * Copyright (c) 2025 Sainthozier
+ * Copyright (c) 2025 - 2026 Sainthozier
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
@@ -13,21 +13,21 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis.mixin;
+package me.sainthozier.praxis.impl
 
-import me.sainthozier.praxis.ModInfo;
-import net.minecraft.client.Minecraft;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import me.sainthozier.praxis.api.PraxisApi
+import me.sainthozier.praxis.api.network.PacketDestination
+import me.sainthozier.praxis.api.registries.PraxisDataLoadConditionCodecRegistry
+import me.sainthozier.praxis.impl.network.ClientboundPacketHandler
+import me.sainthozier.praxis.impl.network.ClientboundRegistryAttachmentsSyncPayload
 
-@Mixin(Minecraft.class)
-public class MixinMinecraft {
-    
-    @Inject(at = @At("TAIL"), method = "<init>")
-    private void init(CallbackInfo info) {
-        ModInfo.getLOG().info("This line is printed by an example mod common mixin!");
-        ModInfo.getLOG().info("MC Version: {}", Minecraft.getInstance().getVersionType());
+object CommonModEntrypoint {
+    fun init() {
+        PraxisDataLoadConditionCodecRegistry.bootstrap()
+        PraxisApi.packetRegistrar.registerPacket(
+            ClientboundRegistryAttachmentsSyncPayload.TYPE,
+            ClientboundRegistryAttachmentsSyncPayload.STREAM_CODEC, PacketDestination.SERVER_TO_CLIENT,
+            ClientboundPacketHandler::handleRegistryAttachmentsSync
+        )
     }
 }

@@ -1,17 +1,20 @@
 {
-  "required": true,
-  "minVersion": "0.8",
-  "package": "me.sainthozier.praxis.mixin",
-  "refmap": "${mod_id}.refmap.json",
-  "compatibilityLevel": "JAVA_18",
-  "mixins": [],
-  "client": [
-    "MixinMinecraft",
-    "client.MixinItemStack"
-  ],
-  "server": [],
-  "injectors": {
-    "defaultRequire": 1
-  }
+    "required": true,
+    "minVersion": "0.8",
+    "package": "me.sainthozier.praxis.mixin",
+    "refmap": "${mod_id}.refmap.json",
+    "compatibilityLevel": "JAVA_18",
+    "mixins": [
+        "MixinMappedRegistry",
+        "MixinReloadableServerResources",
+        "MixinPlayerList"
+    ],
+    "client": [
+        "client.MixinItemStack"
+    ],
+    "server": [],
+    "injectors": {
+        "defaultRequire": 1
+    }
 }
 

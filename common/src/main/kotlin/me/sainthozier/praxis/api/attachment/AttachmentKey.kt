@@ -1,7 +1,7 @@
 /*
  * This file is licensed under the All Rights Reserved license, part of Praxis.
  *
- * Copyright (c) 2025 Sainthozier
+ * Copyright (c) 2025 - 2026 Sainthozier
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
@@ -13,7 +13,7 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis.api.data
+package me.sainthozier.praxis.api.attachment
 
 import com.mojang.serialization.Codec
 import me.sainthozier.praxis.api.PraxisApi

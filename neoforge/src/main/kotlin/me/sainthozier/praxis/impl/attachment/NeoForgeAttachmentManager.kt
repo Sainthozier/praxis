@@ -1,7 +1,7 @@
 /*
  * This file is licensed under the All Rights Reserved license, part of Praxis.
  *
- * Copyright (c) 2025 Sainthozier
+ * Copyright (c) 2025 - 2026 Sainthozier
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
@@ -13,14 +13,14 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis.impl.data
+package me.sainthozier.praxis.impl.attachment
 
 import com.google.auto.service.AutoService
-import me.sainthozier.praxis.ModInfo
-import me.sainthozier.praxis.api.data.AttachmentKey
-import me.sainthozier.praxis.api.data.AttachmentManager
-import me.sainthozier.praxis.api.data.AttachmentPatch
-import me.sainthozier.praxis.api.data.AttachmentTarget
+import me.sainthozier.praxis.PraxisModInfo
+import me.sainthozier.praxis.api.attachment.AttachmentKey
+import me.sainthozier.praxis.api.attachment.AttachmentManager
+import me.sainthozier.praxis.api.attachment.AttachmentPatch
+import me.sainthozier.praxis.api.attachment.AttachmentTarget
 import net.minecraft.core.component.DataComponentPatch
 import net.minecraft.core.component.DataComponentType
 import net.minecraft.core.registries.BuiltInRegistries
@@ -152,9 +152,9 @@ internal class NeoForgeAttachmentManager : AttachmentManager {
 
     companion object {
         val ATTACHMENT_TYPES: DeferredRegister<AttachmentType<*>> =
-            DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, ModInfo.MOD_ID)
+            DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, PraxisModInfo.MOD_ID)
 
         val DATA_COMPONENT_TYPES: DeferredRegister<DataComponentType<*>> =
-            DeferredRegister.create(BuiltInRegistries.DATA_COMPONENT_TYPE, ModInfo.MOD_ID)
+            DeferredRegister.create(BuiltInRegistries.DATA_COMPONENT_TYPE, PraxisModInfo.MOD_ID)
     }
 }

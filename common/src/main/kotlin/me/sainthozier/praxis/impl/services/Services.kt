@@ -1,7 +1,7 @@
 /*
  * This file is licensed under the All Rights Reserved license, part of Praxis.
  *
- * Copyright (c) 2025 Sainthozier
+ * Copyright (c) 2025 - 2026 Sainthozier
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
@@ -15,7 +15,7 @@
 
 package me.sainthozier.praxis.impl.services
 
-import me.sainthozier.praxis.api.data.AttachmentManager
+import me.sainthozier.praxis.api.attachment.AttachmentManager
 import me.sainthozier.praxis.api.network.PacketDistributor
 import me.sainthozier.praxis.api.network.PacketRegistrar
 import me.sainthozier.praxis.api.registry.RegistrarFactoryProvider

@@ -1,7 +1,7 @@
 /*
  * This file is licensed under the All Rights Reserved license, part of Praxis.
  *
- * Copyright (c) 2025 Sainthozier
+ * Copyright (c) 2025 - 2026 Sainthozier
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
@@ -13,14 +13,18 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis
+package me.sainthozier.praxis.impl.attachment.registry
 
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import me.sainthozier.praxis.api.attachment.registry.RegistryAttachmentType
+import net.minecraft.resources.ResourceKey
 
-object ModInfo {
-    const val MOD_ID = "praxis"
-    const val MOD_NAME = "Praxis"
-    @JvmStatic // needed so Mixins can access
-    val LOG: Logger = LoggerFactory.getLogger(MOD_NAME)
+@Suppress("FunctionName")
+interface RegistryAttachmentHolder<R> {
+    fun <T> `praxis$getAttachments`(type: RegistryAttachmentType<R, T>): Map<ResourceKey<R>, T>
+
+    fun <T> `praxis$getAttachment`(type: RegistryAttachmentType<R, T>, key: ResourceKey<R>): T?
+
+    fun <T> `praxis$setAttachmentsForType`(type: RegistryAttachmentType<R, T>, values: Map<ResourceKey<R>, T>)
+
+    fun `praxis$clearAttachments`()
 }

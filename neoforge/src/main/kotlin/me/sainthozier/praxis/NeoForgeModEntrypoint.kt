@@ -1,7 +1,7 @@
 /*
  * This file is licensed under the All Rights Reserved license, part of Praxis.
  *
- * Copyright (c) 2025 Sainthozier
+ * Copyright (c) 2025 - 2026 Sainthozier
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
@@ -15,8 +15,9 @@
 
 package me.sainthozier.praxis
 
+import me.sainthozier.praxis.impl.CommonModEntrypoint
 import me.sainthozier.praxis.impl.client.event.NeoForgeClientEventHandler
-import me.sainthozier.praxis.impl.data.NeoForgeAttachmentManager
+import me.sainthozier.praxis.impl.attachment.NeoForgeAttachmentManager
 import me.sainthozier.praxis.impl.event.NeoForgeEventHandler
 import me.sainthozier.praxis.impl.network.NeoForgePacketRegistrar
 import me.sainthozier.praxis.impl.services.Services
@@ -26,7 +27,7 @@ import net.neoforged.fml.common.Mod
 import net.neoforged.fml.loading.FMLLoader
 import net.neoforged.neoforge.common.NeoForge
 
-@Mod(ModInfo.MOD_ID)
+@Mod(PraxisModInfo.MOD_ID)
 class NeoForgeModEntrypoint(eventBus: IEventBus, modContainer: ModContainer) {
     init {
         (Services.PACKET_REGISTRAR as? NeoForgePacketRegistrar)?.let { handler ->

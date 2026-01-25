@@ -1,7 +1,7 @@
 /*
  * This file is licensed under the All Rights Reserved license, part of Praxis.
  *
- * Copyright (c) 2025 Sainthozier
+ * Copyright (c) 2025 - 2026 Sainthozier
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
@@ -13,13 +13,22 @@
  * to facilitate learning and knowledge sharing within the modding community.
  */
 
-package me.sainthozier.praxis.api.data
+package me.sainthozier.praxis.api.extensions
+
+import me.sainthozier.praxis.PraxisModInfo
+import net.minecraft.resources.ResourceLocation
 
 /**
- * Defines the types of game objects that data can be attached to.
+ * @return [ResourceLocation] from the String using the mod id specified in [PraxisModInfo]
  */
-enum class AttachmentTarget {
-    ENTITY,
-    BLOCK_ENTITY,
-    ITEM_STACK
-}
+internal fun String.location() = ResourceLocation.fromNamespaceAndPath(PraxisModInfo.MOD_ID, this)
+
+/**
+ * @return [ResourceLocation] from the string using the passed namespace
+ */
+fun String.location(namespace: String): ResourceLocation = ResourceLocation.fromNamespaceAndPath(namespace, this)
+
+/**
+ * @return [ResourceLocation] from the string using the vanilla namespace
+ */
+fun String.vanillaLocation(): ResourceLocation = ResourceLocation.withDefaultNamespace(this)

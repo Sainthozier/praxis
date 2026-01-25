@@ -30,7 +30,7 @@ license {
     properties {
         name = project.modName
         author = project.modAuthor
-        year = Calendar.getInstance().get(Calendar.YEAR).toString()
+        year = "2025 - ${Calendar.getInstance().get(Calendar.YEAR).toString()}"
     }
     include("**/*.java", "**/*.kt")
 }
@@ -121,24 +121,24 @@ tasks.named("javadocJar", Jar) {
 
 processResources {
     var expandProps = [
-            'version'                      : version,
-            'group'                        : project.group, //Else we target the task's group.
-            'minecraft_version'            : libs.versions.minecraft.get(),
-            'minecraft_version_range'      : libs.versions.minecraftRange.get(),
-            'fabric_version'               : libs.versions.fabricApi.get(),
-            'fabric_loader_version'        : libs.versions.fabricLoader.get(),
-            'flk_version'                  : libs.versions.flk.get(),
-            'mod_name'                     : modName,
-            'mod_author'                   : modAuthor,
-            'mod_id'                       : modId,
-            'license'                      : license,
-            'description'                  : project.description,
-            'neoforge_version'             : libs.versions.neoforge.get(),
-            'neoforge_range'               : libs.versions.neoforgeRange.get(),
-            'klf_version'                  : libs.versions.klf.get(),
-            'klf_version_range'            : libs.versions.klfRange.get(),
-            'credits'                      : credits,
-            'java_version'                 : libs.versions.java.get()
+            'version'                : version,
+            'group'                  : project.group, //Else we target the task's group.
+            'minecraft_version'      : libs.versions.minecraft.get(),
+            'minecraft_version_range': libs.versions.minecraftRange.get(),
+            'fabric_version'         : libs.versions.fabricApi.get(),
+            'fabric_loader_version'  : libs.versions.fabricLoader.get(),
+            'flk_version'            : libs.versions.flk.get(),
+            'mod_name'               : modName,
+            'mod_author'             : modAuthor,
+            'mod_id'                 : modId,
+            'license'                : license,
+            'description'            : project.description,
+            'neoforge_version'       : libs.versions.neoforge.get(),
+            'neoforge_range'         : libs.versions.neoforgeRange.get(),
+            'klf_version'            : libs.versions.klf.get(),
+            'klf_version_range'      : libs.versions.klfRange.get(),
+            'credits'                : credits,
+            'java_version'           : libs.versions.java.get()
     ]
 
     filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
